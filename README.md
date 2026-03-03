@@ -26,12 +26,12 @@ Ushbu loyiha Odoo 17 manbasi va 2 ta custom moduldan iborat:
 - `db_user = odoo`
 - `db_password = odoo`
 - `addons_path = /demo_odoo/odoo/addons,/demo_odoo/custom_addons`
-- `http_port = 8077`
+- `http_port = 8069`
 
 ## 4) Ishga tushirish
 
 ```bash
-cd /home/muhammadrizo/demo_odoo
+cd /demo_odoo
 source venv/bin/activate
 python3 odoo/odoo-bin -c config/odoo.conf
 ```
