@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_sale_order_form_credit_control_inherit" model="ir.ui.view">
+        <field name="name">sale.order.form.credit.control.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/group" position="inside">
+                <group string="Credit Control">
+                    <field name="credit_limit_id" readonly="1"/>
+                    <field name="credit_limit_currency_id" invisible="1"/>
+                    <field name="remaining_credit" readonly="1" widget="monetary" options="{'currency_field': 'credit_limit_currency_id'}"/>
+                    <field name="is_credit_exceeded" invisible="1"/>
+                    <div class="alert" invisible="not is_credit_exceeded">
+                        Ushbu buyurtma bilan kredit limit oshib ketadi.
+                    </div>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

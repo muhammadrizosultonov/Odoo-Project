@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_sale_order_form_approval_inherit" model="ir.ui.view">
+        <field name="name">sale.order.form.approval.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button type="object" name="action_view_approval_requests" class="oe_stat_button" icon="fa-check-square-o">
+                    <field name="approval_request_count" widget="statinfo" string="Approval"/>
+                </button>
+            </xpath>
+            <xpath expr="//sheet/group" position="inside">
+                <group string="Approval Status">
+                    <field name="is_approval_required" readonly="1"/>
+                    <div class="alert alert-warning" invisible="not is_approval_required">
+                        Ushbu order uchun (10000 dan katta) manager approval talab qilinadi.
+                    </div>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

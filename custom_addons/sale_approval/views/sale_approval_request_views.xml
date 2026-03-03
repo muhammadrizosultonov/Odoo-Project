@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_sale_approval_request_tree" model="ir.ui.view">
+        <field name="name">sale.approval.request.tree</field>
+        <field name="model">sale.approval.request</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="sale_order_id"/>
+                <field name="requested_by"/>
+                <field name="approved_by"/>
+                <field name="total_amount"/>
+                <field name="currency_id"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_sale_approval_request_form" model="ir.ui.view">
+        <field name="name">sale.approval.request.form</field>
+        <field name="model">sale.approval.request</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_submit" type="object" string="Submit" class="btn-primary" invisible="state != 'draft'"/>
+                    <button name="action_approve" type="object" string="Approve" class="btn-success" invisible="state not in ('draft', 'submitted')" groups="sales_team.group_sale_manager"/>
+                    <button name="action_reject" type="object" string="Reject" class="btn-danger" invisible="state not in ('draft', 'submitted')" groups="sales_team.group_sale_manager"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,submitted,approved,rejected"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" readonly="1"/>
+                            <field name="sale_order_id"/>
+                            <field name="requested_by" readonly="1"/>
+                            <field name="approved_by" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="total_amount" readonly="1"/>
+                            <field name="currency_id" readonly="1"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="reject_reason" placeholder="Reject sababini yozing..." readonly="state != 'draft' and state != 'submitted'"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_sale_approval_request" model="ir.actions.act_window">
+        <field name="name">Sale Approvals</field>
+        <field name="res_model">sale.approval.request</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_sale_approval_root" name="Sale Approvals" parent="sale.sale_menu_root" sequence="80"/>
+    <menuitem id="menu_sale_approval_request" name="Approval Requests" parent="menu_sale_approval_root" action="action_sale_approval_request" sequence="10"/>
+</odoo>

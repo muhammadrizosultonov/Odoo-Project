@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Accounting Managerlar uchun barcha yozuvlarga to'liq kirish ruxsati. -->
+    <record id="rule_credit_limit_manager_all" model="ir.rule">
+        <field name="name">Credit Limit manager full access</field>
+        <field name="model_id" ref="model_customer_credit_limit"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('account.group_account_manager'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+
+    <!-- Sales userlar kredit limitni faqat ko'radi, tahrirlashga ruxsat yo'q. -->
+    <record id="rule_credit_limit_sales_readonly" model="ir.rule">
+        <field name="name">Credit Limit sales readonly</field>
+        <field name="model_id" ref="model_customer_credit_limit"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('sales_team.group_sale_salesman'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+</odoo>

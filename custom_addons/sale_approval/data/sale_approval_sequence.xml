@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="seq_sale_approval_request" model="ir.sequence">
+        <field name="name">Sale Approval Request</field>
+        <field name="code">sale.approval.request</field>
+        <field name="prefix">SAR/%(year)s/</field>
+        <field name="padding">4</field>
+        <field name="number_increment">1</field>
+    </record>
+</odoo>
